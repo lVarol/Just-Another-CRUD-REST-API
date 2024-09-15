@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todos</title>
+</head>
+<body>
+     <h1>To-Do</h1>
+    <ul>
+        {% for todo in todos %}
+        <li class="todos" >
+            <div>
+                <span>{{ todo['todo'] }}</span>
+                <span>{{ todo['status'] }}</span>
+                <a class="button" href="{{ url_for('todo.edit_todo', id=todo['id']) }}">Edit</a>
+                <form action="{{ url_for('todo.delete_todo', id=todo['id']) }}" method="post" >
+                    <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete it?')">
+                </form>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    <a class="button" href="{{ url_for('todo.add_todo') }}">Add Todo</a>
+</body>
+</html>
